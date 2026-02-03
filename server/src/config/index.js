@@ -12,4 +12,9 @@ module.exports = {
     verificationExpirationMinutes:
       process.env.JWT_VERIFICATION_EXPIRATION_MINUTES || 5,
   },
+    cloudinary: {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  },
 };

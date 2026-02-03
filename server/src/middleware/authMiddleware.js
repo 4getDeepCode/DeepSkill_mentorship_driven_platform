@@ -1,10 +1,8 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-
-const { getUserByIdService } = require("../services/user.service");
-
+const { getUserByIdService } = require("../services/userService");
 const ApiError = require("../helper/apiError");
-const httpStatus = require("../constants/httpStatus");
+const httpStatus = require("../utils/httpStatus");
 
 
 //  Protect Middleware (JWT Auth)

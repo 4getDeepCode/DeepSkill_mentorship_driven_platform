@@ -1,18 +1,20 @@
-const express=require('express');
-const router=express.Router();
-const authRoute=require('./authRoutes');
+const express = require("express");
+const router = express.Router();
+const authRoute = require("./authRoutes");
+const userRoute = require("./userRoutes");
 
-
-const Routes=[
-    {
-        path:"/auth",
-        route:authRoute
-    },
- 
-    
+const Routes = [
+  {
+    path: "/auth",
+    route: authRoute,
+  },
+  {
+    path: "/user",
+    route: userRoute,
+  },
 ];
-Routes.forEach((route)=>{
-    router.use(route.path, route.route)
+Routes.forEach((route) => {
+  router.use(route.path, route.route);
 });
 
-module.exports=router;
+module.exports = router;

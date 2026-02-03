@@ -1,20 +1,13 @@
 const cloudinary = require("cloudinary").v2;
-
 const config = require("../config");
-const httpStatus = require("../constants/httpStatus");
-
-const {
-  getUserByIdService,
-} = require("../services/user.service");
-
-const UserModel = require("../models/user.model");
+const httpStatus = require("../utils/httpStatus");
+const { getUserByIdService } = require("../services/userService");
+const UserModel = require("../models/userModel");
 
 // Configure Cloudinary
 cloudinary.config(config.cloudinary);
 
-
 //  Upload User Photo Controller
-//  Route: POST /api/users/upload-photo
 
 const uploadPhotoController = async (req, res) => {
   try {
@@ -35,7 +28,7 @@ const uploadPhotoController = async (req, res) => {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user._id,
       { photoUrl: result.secure_url },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedUser) {
@@ -60,9 +53,7 @@ const uploadPhotoController = async (req, res) => {
   }
 };
 
-
 // Get Logged-in User Controller
-// Route: GET /api/users/me
 
 const getCurrentUserController = async (req, res) => {
   try {
@@ -88,16 +79,14 @@ const getCurrentUserController = async (req, res) => {
   }
 };
 
-
 //  Update User Profile Controller
-//  Route: PUT /api/users/update-profile
- 
+
 const updateUserProfileController = async (req, res) => {
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user._id,
       { profile: req.body },
-      { new: true }
+      { new: true },
     );
 
     if (!updatedUser) {
