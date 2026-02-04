@@ -2,7 +2,6 @@ const userService = require("../services/authService");
 const tokenService = require("../services/tokenService");
 const httpStatus = require("../utils/httpStatus");
 
-
 //  Sign Up Controller
 //  Route: POST /api/auth/signup
 
@@ -41,7 +40,6 @@ const signUp = async (req, res) => {
     });
   }
 };
-
 
 //  Sign In Controller
 //  Route: POST /api/auth/signin

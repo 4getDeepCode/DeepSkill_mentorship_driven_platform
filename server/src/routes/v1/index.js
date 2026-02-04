@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authRoute = require("./authRoutes");
 const userRoute = require("./userRoutes");
+const serviceRoute = require("./serviceRoutes");
 
 const Routes = [
   {
@@ -12,6 +13,11 @@ const Routes = [
     path: "/user",
     route: userRoute,
   },
+  {
+    path: "/service",
+    route: serviceRoute,
+  },
+  
 ];
 Routes.forEach((route) => {
   router.use(route.path, route.route);
