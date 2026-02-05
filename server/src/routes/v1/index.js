@@ -4,6 +4,8 @@ const authRoute = require("./authRoutes");
 const userRoute = require("./userRoutes");
 const serviceRoute = require("./serviceRoutes");
 const mentorRoute = require("./mentorRoutes");
+const bookingRoute = require("./bookingRoutes");
+
 
 const Routes = [
   {
@@ -21,6 +23,10 @@ const Routes = [
   {
     path: "/mentor",
     route: mentorRoute,
+  },
+  {
+    path: "/booking",
+    route: bookingRoute,
   },
 ];
 Routes.forEach((route) => {
