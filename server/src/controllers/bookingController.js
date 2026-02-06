@@ -1,6 +1,8 @@
 const bookingService = require("../services/bookingService");
 const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
+const sendEmail = require("../utils/email");
+const { mentorBookingRequestEmail } = require("../services/emailService");
 
 // STUDENT → CREATE BOOKING
 const createBooking = async (req, res) => {
@@ -17,6 +19,19 @@ const createBooking = async (req, res) => {
     slot: slotId,
     note,
     status: "pending",
+  });
+
+  // EMAIL TO MENTOR
+  await sendEmail({
+    to: booking.mentor.email,
+    subject: "New Booking Request",
+    html: mentorBookingRequestEmail({
+      mentorName: booking.mentor.name,
+      studentName: booking.student.name,
+      serviceName: booking.service.serviceName,
+      date: booking.slot.date,
+      time: `${booking.slot.startTime} - ${booking.slot.endTime}`,
+    }),
   });
 
   res.status(httpStatus.created).json({
@@ -54,6 +69,23 @@ const updateBookingStatus = async (req, res) => {
   if (!booking) {
     throw new ApiError(httpStatus.notFound, "Booking not found");
   }
+
+
+    //  EMAIL TO STUDENT ON APPROVAL
+  if (status === "approved") {
+    await sendEmail({
+      to: booking.student.email,
+      subject: "Your Booking is Approved",
+      html: studentBookingApprovedEmail({
+        studentName: booking.student.name,
+        mentorName: booking.mentor.name,
+        serviceName: booking.service.serviceName,
+        date: booking.slot.date,
+        time: `${booking.slot.startTime} - ${booking.slot.endTime}`,
+      }),
+    });
+  }
+
 
   res.status(httpStatus.ok).json({
     success: true,

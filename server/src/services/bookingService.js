@@ -3,7 +3,13 @@ const availabilityService = require("./availabilityService");
 
 const createBooking = async (data) => {
   await availabilityService.markSlotBooked(data.slot);
-  return await BookingModel.create(data);
+  const booking = await BookingModel.create(data);
+
+  return await BookingModel.findById(booking._id)
+    .populate("student", "name email")
+    .populate("mentor", "name email")
+    .populate("service", "serviceName")
+    .populate("slot", "date startTime endTime");
 };
 
 const getBookingsForMentor = async (mentorId) => {
@@ -17,7 +23,7 @@ const updateBookingStatus = async (bookingId, mentorId, status) => {
   return await BookingModel.findOneAndUpdate(
     { _id: bookingId, mentor: mentorId },
     { status },
-    { new: true }
+    { new: true },
   )
     .populate("student", "name email")
     .populate("service", "serviceName price")

@@ -5,10 +5,14 @@ const userRoute = require("./userRoutes");
 const serviceRoute = require("./serviceRoutes");
 const mentorRoute = require("./mentorRoutes");
 const bookingRoute = require("./bookingRoutes");
-const availabilityRoutes = require("./availabilityRoutes")
-
+const availabilityRoutes = require("./availabilityRoutes");
+const homeRoute = require('./homeRoute')
 
 const Routes = [
+  {
+    path: "/",
+    route: homeRoute,
+  },
   {
     path: "/auth",
     route: authRoute,
@@ -29,11 +33,10 @@ const Routes = [
     path: "/booking",
     route: bookingRoute,
   },
-   {
+  {
     path: "/availability",
     route: availabilityRoutes,
   },
-  
 ];
 Routes.forEach((route) => {
   router.use(route.path, route.route);
