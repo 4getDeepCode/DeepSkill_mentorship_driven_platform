@@ -26,8 +26,9 @@ const bookingSchema = new Schema(
       default: "pending",
     },
 
-    scheduledAt: {
-      type: Date,
+    slot: {
+      type: Schema.Types.ObjectId,
+      ref: "Availability",
       required: true,
     },
 
@@ -36,7 +37,7 @@ const bookingSchema = new Schema(
       default: "",
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = model("Booking", bookingSchema);

@@ -2,17 +2,21 @@ const bookingService = require("../services/bookingService");
 const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
 
-
 // STUDENT → CREATE BOOKING
 const createBooking = async (req, res) => {
-  const { serviceId, mentorId, scheduledAt, note } = req.body;
+  const { serviceId, mentorId, slotId, note } = req.body;
+
+  if (!slotId) {
+    throw new ApiError(httpStatus.badRequest, "Slot is required");
+  }
 
   const booking = await bookingService.createBooking({
     student: req.user._id,
     mentor: mentorId,
     service: serviceId,
-    scheduledAt,
+    slot: slotId,
     note,
+    status: "pending",
   });
 
   res.status(httpStatus.created).json({
@@ -44,7 +48,7 @@ const updateBookingStatus = async (req, res) => {
   const booking = await bookingService.updateBookingStatus(
     bookingId,
     req.user._id,
-    status
+    status,
   );
 
   if (!booking) {

@@ -6,9 +6,14 @@ const createSlot = async (data) => {
   return await Availability.create(data);
 };
 
-const getAvailableSlots = async (mentorId) => {
+const getMentorSlots = async (mentorId) => {
+  return await Availability.find({ mentor: mentorId }).sort({ startTime: 1 });
+};
+
+const getAvailableSlots = async (mentorId, serviceId) => {
   return await Availability.find({
     mentor: mentorId,
+    service: serviceId,
     isBooked: false,
   }).sort({ startTime: 1 });
 };
@@ -31,4 +36,5 @@ module.exports = {
   createSlot,
   getAvailableSlots,
   markSlotBooked,
+  getMentorSlots,
 };
