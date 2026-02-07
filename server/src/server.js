@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 require("./config/db");
+require("./jobs/expireBooking");
 
 const errorHandler = require("./middleware/error");
 const routes = require("./routes/v1");

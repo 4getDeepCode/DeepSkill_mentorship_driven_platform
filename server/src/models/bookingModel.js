@@ -36,6 +36,35 @@ const bookingSchema = new Schema(
       type: String,
       default: "",
     },
+
+    payment: {
+      status: {
+        type: String,
+        enum: ["pending", "paid", "failed"],
+        default: "pending",
+      },
+      orderId: String,
+      paymentId: String,
+      signature: String,
+      amount: Number,
+      currency: {
+        type: String,
+        default: "INR",
+      },
+    },
+    payout: {
+      amount: Number,
+      status: {
+        type: String,
+        enum: ["pending", "processed"],
+        default: "pending",
+      },
+    },
+
+    expiresAt: {
+      type: Date,
+      index: true,
+    },
   },
   { timestamps: true },
 );

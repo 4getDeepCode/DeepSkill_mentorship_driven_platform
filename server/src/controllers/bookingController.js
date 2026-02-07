@@ -2,7 +2,7 @@ const bookingService = require("../services/bookingService");
 const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
 const sendEmail = require("../utils/email");
-const { mentorBookingRequestEmail } = require("../services/emailService");
+const { mentorBookingRequestEmail, studentBookingApprovedEmail } = require("../services/emailService");
 
 // STUDENT → CREATE BOOKING
 const createBooking = async (req, res) => {
@@ -68,6 +68,15 @@ const updateBookingStatus = async (req, res) => {
 
   if (!booking) {
     throw new ApiError(httpStatus.notFound, "Booking not found");
+  }
+
+
+   // SET AUTO-EXPIRY ONLY WHEN APPROVED
+   //Student must pay within 15 minutes
+  
+  if (status === "approved") {
+    booking.expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+    await booking.save();
   }
 
 

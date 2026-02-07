@@ -7,6 +7,8 @@ const mentorRoute = require("./mentorRoutes");
 const bookingRoute = require("./bookingRoutes");
 const availabilityRoutes = require("./availabilityRoutes");
 const homeRoute = require('./homeRoute')
+const paymentRoutes = require('./paymentRoutes')
+const invoiceRoute = require("./invoiceRoute")
 
 const Routes = [
   {
@@ -37,6 +39,16 @@ const Routes = [
     path: "/availability",
     route: availabilityRoutes,
   },
+  {
+    path: "/payments",
+    route: paymentRoutes,
+  },
+
+  {
+    path: "/invoices",
+    route: invoiceRoute,
+  },
+  
 ];
 Routes.forEach((route) => {
   router.use(route.path, route.route);

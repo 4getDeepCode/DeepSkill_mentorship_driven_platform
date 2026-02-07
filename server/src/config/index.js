@@ -12,12 +12,11 @@ module.exports = {
     verificationExpirationMinutes:
       process.env.JWT_VERIFICATION_EXPIRATION_MINUTES || 1440,
   },
-    cloudinary: {
+  cloudinary: {
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
   },
-
 
   email: {
     host: process.env.SMTP_HOST,
@@ -29,7 +28,8 @@ module.exports = {
     from: process.env.EMAIL_FROM,
   },
 
-
-  
-  
+  razorpay: {
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+  },
 };
