@@ -3,6 +3,9 @@ const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
 const sendEmail = require("../utils/email");
 const { mentorBookingRequestEmail, studentBookingApprovedEmail } = require("../services/emailService");
+const { createZoomMeeting } = require("../services/zoomService");
+const { studentZoomEmail, mentorZoomEmail } = require("../utils/zoomEmail");
+
 
 // STUDENT → CREATE BOOKING
 const createBooking = async (req, res) => {

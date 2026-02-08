@@ -61,6 +61,12 @@ const bookingSchema = new Schema(
       },
     },
 
+    zoom: {
+      meetingId: String,
+      joinUrl: String,
+      startUrl: String,
+    },
+
     expiresAt: {
       type: Date,
       index: true,
