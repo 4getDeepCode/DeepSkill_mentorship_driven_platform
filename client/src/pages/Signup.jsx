@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
-import auth from '../aipManager/auth'
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import auth from "../aipManager/auth";
 
 const Signup = () => {
   const { role } = useParams();
@@ -11,10 +11,7 @@ const Signup = () => {
   const heading =
     role === "mentor" ? "Sign Up as Mentor" : "Sign Up as Student";
   const onSubmit = async (data) => {
-    // console.log("hello");
-
     setIsLoading(true);
-    // console.log("data",data,role);
 
     const formData = {
       ...data,
@@ -23,149 +20,98 @@ const Signup = () => {
     console.log(formData);
 
     try {
-     const response= await auth.signup(formData);
-     console.log("response",response.data.message);
-     
+      const response = await auth.signup(formData);
+      console.log("response", response.data.message);
+
       reset();
       toast.success("Account created successfully");
-      navigate("/signin")
-    }
-    catch (error) {
+      navigate("/signin");
+    } catch (error) {
       console.log(error);
-
     }
-  }
+  };
   const normalFunction = (e) => {
     e.preventDefault();
     console.log("hello");
-
-  }
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   return (
     <>
-      <div className="h-screen bg-green-100">
-        <div className="flex items-center justify-center h-full">
-          {/* Form Container */}
-          <div className="w-full max-w-lg px-6 py-8 bg-white bg-opacity-90 rounded-lg shadow-xl">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-800">{heading}</h1>
-              <p className="mt-2 text-gray-600">
-                Sign up to create your account
-              </p>
-            </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-950 via-green-900 to-green-950 relative overflow-hidden px-6">
+        {/* Background Glow */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-yellow-400/20 blur-3xl rounded-full"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-lime-400/20 blur-3xl rounded-full"></div>
 
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="mt-6 space-y-4 text-gray-800"
-            >
-              {/* Name Field */}
-              <div>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className={`block w-full px-4 py-2 mt-2 placeholder-gray-500 bg-gray-100 border ${errors.name ? "border-red-500" : "border-gray-300"
-                    } rounded-lg focus:ring focus:ring-green-300 focus:outline-none`}
-                  {...register("name", { required: "Name is required" })}
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className={`block w-full px-4 py-2 mt-2 placeholder-gray-500 bg-gray-100 border ${errors.email ? "border-red-500" : "border-gray-300"
-                    } rounded-lg focus:ring focus:ring-green-300 focus:outline-none`}
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Username Field */}
-              <div>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className={`block w-full px-4 py-2 mt-2 placeholder-gray-500 bg-gray-100 border ${errors.username ? "border-red-500" : "border-gray-300"
-                    } rounded-lg focus:ring focus:ring-green-300 focus:outline-none`}
-                  {...register("username", {
-                    required: "Username is required",
-                    minLength: {
-                      value: 4,
-                      message: "Username must be at least 4 characters long",
-                    },
-                  })}
-                />
-                {errors.username && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.username.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Password Field */}
-              <div>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className={`block w-full px-4 py-2 mt-2 placeholder-gray-500 bg-gray-100 border ${errors.password ? "border-red-500" : "border-gray-300"
-                    } rounded-lg focus:ring focus:ring-green-300 focus:outline-none`}
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters long",
-                    },
-                  })}
-                />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {errors.password.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Submit Button */}
-              <div>
-                <button
-                  disabled={isLoading}
-                  className="w-full px-4 py-2 font-semibold text-white transition duration-300 bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 disabled:opacity-50"
-                >
-                  {isLoading ? "Loading..." : "Sign Up"}
-                </button>
-              </div>
-            </form>
-
-            <p className="mt-6 text-sm text-center text-gray-600">
-              Already have an account?{" "}
-              <NavLink
-                to="/signin"
-                className="font-medium text-green-600 hover:underline"
-              >
-                Sign In
-              </NavLink>
-              .
+        {/* Form Container */}
+        <div className="relative z-10 w-full max-w-lg p-8 rounded-2xl bg-green-900/40 backdrop-blur-xl border border-yellow-400/20 shadow-[0_0_40px_rgba(0,0,0,0.4)]">
+          {/* Heading */}
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400 bg-clip-text text-transparent">
+              {heading}
+            </h1>
+            <p className="mt-2 text-yellow-200/80">
+              Sign up to create your account
             </p>
           </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-5">
+            {/* Input Style Shared */}
+            {[
+              { name: "name", type: "text", placeholder: "Your Name" },
+              { name: "email", type: "email", placeholder: "Email Address" },
+              { name: "username", type: "text", placeholder: "Username" },
+              { name: "password", type: "password", placeholder: "Password" },
+            ].map((field) => (
+              <div key={field.name}>
+                <input
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  className={`w-full px-4 py-3 rounded-xl bg-green-950/60 text-yellow-100 placeholder-yellow-200/50  border ${
+                    errors[field.name]
+                      ? "border-red-500"
+                      : "border-yellow-400/20"
+                  } focus:outline-none focus:ring-2 focus:ring-yellow-400/60 transition`}
+                  {...register(field.name, {
+                    required: `${field.placeholder} is required`,
+                  })}
+                />
+                {errors[field.name] && (
+                  <p className="mt-1 text-sm text-red-400">
+                    {errors[field.name].message}
+                  </p>
+                )}
+              </div>
+            ))}
+
+            {/* Submit Button */}
+            <button
+              disabled={isLoading}
+              className="w-full py-3 text-lg font-semibold rounded-full text-green-950 bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400 transition-all duration-300 hover:from-yellow-300 hover:to-lime-500 hover:shadow-[0_0_25px_rgba(250,204,21,0.8)]     hover:-translate-y-1  disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "Loading..." : "Sign Up"}
+            </button>
+          </form>
+
+          {/* Footer */}
+          <p className="mt-6 text-sm text-center text-yellow-200/80">
+            Already have an account?{" "}
+            <NavLink
+              to="/signin"
+              className="font-semibold text-yellow-400 hover:text-lime-400 transition"
+            >
+              Sign In
+            </NavLink>
+          </p>
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;

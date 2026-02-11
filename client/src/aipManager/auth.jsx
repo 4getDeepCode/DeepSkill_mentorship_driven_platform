@@ -1,9 +1,11 @@
-import React from 'react'
+import AxiosInstances from ".";
+const signin=(data)=>{
+    return AxiosInstances.post("/auth/signin",data)
 
-const auth = () => {
-  return (
-    <div>auth</div>
-  )
 }
 
-export default auth
+const signup=(data)=>{
+    return AxiosInstances.post("/auth/signup",data)
+}
+
+export default {signin,signup}

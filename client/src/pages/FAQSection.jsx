@@ -110,7 +110,7 @@ const FAQSection = () => {
         hover:shadow-[0_0_25px_rgba(250,204,21,0.8)]
         hover:-translate-y-1
         disabled:opacity-60 disabled:cursor-not-allowed"
-            disabled
+        disabled
           >
             Still have questions? Contact Us!
           </button>
