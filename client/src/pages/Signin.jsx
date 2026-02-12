@@ -37,19 +37,26 @@ const Signin = () => {
   });
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-green-950 via-green-900 to-green-950relative overflow-hidden px-6"
+      className="min-h-screen flex items-center justify-center
+bg-gradient-to-b from-green-950 via-green-900 to-green-950
+relative overflow-hidden px-6"
     >
       {/* Background Glow */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-yellow-400/20 blur-3xl rounded-full"></div>
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-lime-400/20 blur-3xl rounded-full"></div>
 
       <div
-        className="relative z-10 w-full max-w-lg p-8 rounded-2xl bg-green-900/40 backdrop-blur-xl
-    border border-yellow-400/20 shadow-[0_0_40px_rgba(0,0,0,0.4)]" >
+        className="relative z-10 w-full max-w-lg p-8 rounded-2xl
+    bg-green-900/40 backdrop-blur-xl
+    border border-yellow-400/20
+    shadow-[0_0_40px_rgba(0,0,0,0.4)]"
+      >
         {/* Heading */}
         <div className="text-center">
           <h1
-            className="text-4xl font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400 bg-clip-text text-transparent"
+            className="text-4xl font-extrabold
+        bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400
+        bg-clip-text text-transparent"
           >
             Welcome Back
           </h1>
@@ -64,7 +71,11 @@ const Signin = () => {
             <input
               type="email"
               placeholder="Email Address"
-              className={`w-full px-4 py-3 rounded-xl bg-green-950/60 text-yellow-100 placeholder-yellow-200/50 border ${errors.email ? "border-red-500" : "border-yellow-400/20"} focus:outline-none focus:ring-2 focus:ring-yellow-400/60  transition`}
+              className={`w-full px-4 py-3 rounded-xl
+          bg-green-950/60 text-yellow-100 placeholder-yellow-200/50
+          border ${errors.email ? "border-red-500" : "border-yellow-400/20"}
+          focus:outline-none focus:ring-2 focus:ring-yellow-400/60
+          transition`}
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -85,7 +96,11 @@ const Signin = () => {
             <input
               type="password"
               placeholder="Password"
-              className={`w-full px-4 py-3 rounded-xl bg-green-950/60 text-yellow-100 placeholder-yellow-200/50 border ${errors.password ? "border-red-500" : "border-yellow-400/20"} focus:outline-none focus:ring-2 focus:ring-yellow-400/60 transition`}
+              className={`w-full px-4 py-3 rounded-xl
+          bg-green-950/60 text-yellow-100 placeholder-yellow-200/50
+          border ${errors.password ? "border-red-500" : "border-yellow-400/20"}
+          focus:outline-none focus:ring-2 focus:ring-yellow-400/60
+          transition`}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -104,7 +119,14 @@ const Signin = () => {
           {/* Submit Button */}
           <button
             disabled={isLoading}
-            className="w-full py-3 text-lg font-semibold rounded-full  text-green-950  bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400  transition-all duration-300 hover:from-yellow-300 hover:to-lime-500 hover:shadow-[0_0_25px_rgba(250,204,21,0.8)] hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full py-3 text-lg font-semibold rounded-full
+        text-green-950
+        bg-gradient-to-r from-yellow-400 via-yellow-300 to-lime-400
+        transition-all duration-300
+        hover:from-yellow-300 hover:to-lime-500
+        hover:shadow-[0_0_25px_rgba(250,204,21,0.8)]
+        hover:-translate-y-1
+        disabled:opacity-60 disabled:cursor-not-allowed"
           >
             {isLoading ? "Loading..." : "Sign In"}
           </button>
