@@ -42,6 +42,7 @@ const Nav = () => {
       <div className="h-px bg-[#D1DCCF] mb-4" />
 
       {/* Actions */}
+      
       <NavLink
         to="/dashboard/profile"
         className="block px-3 py-2 rounded-lg text-[#1E2B1C]

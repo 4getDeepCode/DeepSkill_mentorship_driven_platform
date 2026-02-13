@@ -3,6 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import mentor from "../assets/mentor.png";
 import FAQSection from "./FAQSection";
+import TopMentors from "@/components/TopMentors";
 
 const Home = () => {
   return (
@@ -412,17 +413,20 @@ const Home = () => {
       </section>
 
       {/* Featching Mentors */}
-      {/* <section
+      <section
         style={{
           background: "linear-gradient(to bottom right, #f3f4f6, #e5e7eb)",
           backgroundSize: "200% 200%",
           animation: "gradientAnimation 6s ease infinite",
         }}
       >
-        <div className="container mx-auto">
+        <div className=" mx-auto w-full">
           <TopMentors />
         </div>
-      </section> */}
+      </section>
+
+
+
 
       {/* Pricing Section */}
       <section
