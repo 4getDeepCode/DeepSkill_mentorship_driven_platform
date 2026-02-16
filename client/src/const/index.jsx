@@ -1,2 +1,2 @@
 export const USER_STORE_PERSIST="hjhgghvuyiuoiionxxcxgfdj";
-export const TOKEN="hgfkhgjhhjhjghhggkhgbnvf";
+export const TOKEN="hjhgghvuyiuoiionxxcxgfdj";

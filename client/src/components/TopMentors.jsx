@@ -57,7 +57,7 @@ const selectTopMentor = (mentors) => {
   },[])
   return (
    <>
-<section className="relative w-full min-h-screen
+<section className="relative w-full
 bg-gradient-to-b from-green-950 via-green-900 to-green-950
 overflow-hidden">
 
@@ -66,7 +66,7 @@ overflow-hidden">
   <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-lime-400/20 blur-3xl rounded-full"></div>
 
   {/* Centered Content */}
-  <div className="relative z-10 max-w-screen-xl mx-auto px-6 py-24">
+  <div className="relative z-10 max-w-screen-xl mx-auto p-8">
     
     {/* Heading */}
     <h1 className="text-center text-4xl sm:text-5xl font-extrabold mb-16
@@ -75,7 +75,10 @@ overflow-hidden">
       Top Mentors
     </h1>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div 
+    className="flex items-center justify-center gap-8  scrollbar-hide pb-6 "
+    
+    >
       {topMentors.map((mentor) => (
         <MentorCard mentor={mentor} key={mentor?._id} />
       ))}

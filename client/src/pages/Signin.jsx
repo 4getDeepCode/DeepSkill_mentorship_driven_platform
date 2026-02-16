@@ -24,11 +24,23 @@ const Signin = () => {
 
     try {
       const response = await auth.signin(data);
-      reset();
-      setUser(response.data.user);
-      setToken(response.data.token);
-      navigate("/");
-      toast.success("Login successfully!");
+
+      if (response.data.success) {
+
+        setToken(response.data.token.access.token);
+        useUserStore.getState().setUser(response.data.user);
+        navigate("/");
+        toast.success("Login successfully!");
+      }
+
+      //   const response = await auth.signin(data);
+      //   console.log("LOGIN RESPONSE:", response.data);
+      //   reset();
+      //   setUser(response.data.user);
+      //  setToken(response.data.token.access.token);
+      //   useUserStore.getState().setUser(response.data.user);
+      //   navigate("/");
+      //   toast.success("Login successfully!");
     } catch (e) {
       console.log(e);
       toast.error("Login failed! Please check your credentials");

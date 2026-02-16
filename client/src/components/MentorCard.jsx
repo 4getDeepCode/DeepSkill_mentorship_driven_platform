@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const MentorCard = ({ mentor }) => {
@@ -11,20 +10,20 @@ const MentorCard = ({ mentor }) => {
       hover:shadow-[0_0_25px_rgba(250,204,21,0.25)]
       hover:-translate-y-1"
     >
-      <h3 className="text-xl font-semibold text-yellow-300">
-        {mentor?.name}
-      </h3>
+      <img
+        src={mentor.profileImage}
+        alt={mentor.name}
+        className="w-24 h-24 rounded-full object-cover mb-4"
+      />
+      <h3 className="text-xl font-semibold text-yellow-300">{mentor?.name}</h3>
 
-      <p className="mt-2 text-yellow-200/80">
-        Username: {mentor?.username}
-      </p>
+      {/* <p className="mt-2 text-yellow-200/80">Username: {mentor?.username}</p> */}
 
       <p className="mt-1 text-yellow-200/70">
-        Title: {mentor?.profile?.title || "No title available"}
+       {mentor?.profile?.title || "No title available"}
       </p>
     </div>
   );
 };
 
 export default MentorCard;
-
