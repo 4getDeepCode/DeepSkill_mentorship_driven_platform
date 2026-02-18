@@ -6,7 +6,9 @@ import { removeToken } from "@/helper";
 import { Popover } from "antd";
 import toast from "react-hot-toast";
 
-const Nav = () => {
+
+
+const Navbar = () => {
   const { user, setUser } = useUserStore();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -198,4 +200,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navbar;

@@ -9,6 +9,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      
       {/* hero section */}
       <div className="bg-gradient-to-b from-green-950 via-green-900 to-green-950">
         <section className="relative py-20 px-6  overflow-hidden">
@@ -425,9 +426,6 @@ const Home = () => {
         </div>
       </section>
 
-
-
-
       {/* Pricing Section */}
       <section
         className="relative px-6 py-24 text-center overflow-hidden
@@ -470,88 +468,7 @@ const Home = () => {
 
       {/* FAQ's */}
 
-      {/* <section className="px-6 py-16 bg-green-100">
-        <div className="max-w-screen-lg mx-auto">
-          <h2 className="mb-8 text-5xl font-extrabold text-center text-green-700">
-            Frequently Asked Questions
-          </h2>
-          <p className="mb-12 text-lg text-center text-gray-700">
-            Get the answers you need about Elevate Hub and how we can support
-            your growth.
-          </p>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {[
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-
-              {
-                question: "What is Elevate Hub",
-                answer:
-                  "Elevate Hub is plateform designed to connect ambitious individuals with expert mentor to help them",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <button
-                  className="flex items-center justify-between w-full text-left text-lg font-medium text-gray-700"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  {faq.question}
-                  <span className="ml-2">{index ? "−" : "+"}</span>
-                </button>
-
-                {index && (
-                  <p className="mt-4 text-gray-600 transition-all duration-300 ease-in-out">
-                    {faq.answer}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <button
-              className="px-8 py-4 text-lg font font-semibold text-white rounded-lg bg-gray-400  cursor-not-allowed "
-              disabled
-            >
-              Still have question? Contact Us!
-            </button>
-          </div>
-        </div>
-      </section> */}
-
-      <FAQSection/>
-
-
+      <FAQSection />
 
       {/* Call to Action */}
       <section

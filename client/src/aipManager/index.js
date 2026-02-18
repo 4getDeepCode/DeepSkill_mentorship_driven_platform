@@ -1,21 +1,19 @@
 import axios from "axios";
-import { USER_STORE_PERSIST } from "../const";
-import { BASE_URL } from "../const/env.const";
-import { getToken, removeToken } from "../helper";
 import toast from "react-hot-toast";
+import { USER_STORE_PERSIST } from "@/const";
+import { BASE_URL } from "@/const/env.const";
+import { getToken, removeToken } from "@/helper";
 
 // Create Axios Instance
 const AxiosInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-// ==========================
+
 // Request Interceptor
-// ==========================
 AxiosInstance.interceptors.request.use(
   (config) => {
     const token = getToken();
-      console.log("TOKEN SENT:", token);
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -26,9 +24,8 @@ AxiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// ==========================
 // Response Interceptor
-// ==========================
+
 AxiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
