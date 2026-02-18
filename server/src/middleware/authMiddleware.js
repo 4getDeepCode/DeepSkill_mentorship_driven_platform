@@ -4,7 +4,6 @@ const { getUserByIdService } = require("../services/userService");
 const ApiError = require("../helper/apiError");
 const httpStatus = require("../utils/httpStatus");
 
-
 //  Protect Middleware (JWT Auth)
 
 const protect = async (req, res, next) => {
@@ -24,23 +23,21 @@ const protect = async (req, res, next) => {
       return next(
         new ApiError(
           httpStatus.unauthorized,
-          "You are not logged in! Please login first."
-        )
+          "You are not logged in! Please login first.",
+        ),
       );
     }
 
     // Verify token
     const decoded = jwt.verify(token, config.jwt.accessSecret);
+  
 
     // Get current user
     const currentUser = await getUserByIdService(decoded.sub);
 
     if (!currentUser) {
       return next(
-        new ApiError(
-          httpStatus.unauthorized,
-          "User no longer exists."
-        )
+        new ApiError(httpStatus.unauthorized, "User no longer exists."),
       );
     }
 
@@ -49,25 +46,21 @@ const protect = async (req, res, next) => {
     next();
   } catch (error) {
     return next(
-      new ApiError(
-        httpStatus.unauthorized,
-        "Invalid or expired token."
-      )
+      new ApiError(httpStatus.unauthorized, "Invalid or expired token."),
     );
   }
 };
 
-
 //  Restrict To Roles Middleware
- 
+
 const restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
         new ApiError(
           httpStatus.forbidden,
-          "You do not have permission to perform this action."
-        )
+          "You do not have permission to perform this action.",
+        ),
       );
     }
 
