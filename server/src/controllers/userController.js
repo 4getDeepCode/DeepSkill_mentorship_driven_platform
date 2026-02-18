@@ -1,14 +1,8 @@
-const cloudinary = require("cloudinary").v2;
-const config = require("../config");
 const httpStatus = require("../utils/httpStatus");
 const { getUserByIdService } = require("../services/userService");
 const UserModel = require("../models/userModel");
 
-// Configure Cloudinary
-cloudinary.config(config.cloudinary);
-
-//  Upload User Photo Controller
-
+// Upload User Photo
 const uploadPhotoController = async (req, res) => {
   try {
     if (!req.file) {
@@ -18,17 +12,13 @@ const uploadPhotoController = async (req, res) => {
       });
     }
 
-    // Upload image to Cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: "user_photos",
-      use_filename: true,
-    });
+    // Cloudinary URL comes directly from multer-storage-cloudinary
+    const photoUrl = req.file.path;
 
-    // Update user photo URL in DB
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user._id,
-      { photoUrl: result.secure_url },
-      { new: true },
+      { photoUrl },
+      { new: true }
     );
 
     if (!updatedUser) {
@@ -43,6 +33,7 @@ const uploadPhotoController = async (req, res) => {
       message: "Photo uploaded successfully",
       photoUrl: updatedUser.photoUrl,
     });
+
   } catch (error) {
     console.error("Upload Photo Error:", error);
 
@@ -53,8 +44,7 @@ const uploadPhotoController = async (req, res) => {
   }
 };
 
-// Get Logged-in User Controller
-
+// Get Current User
 const getCurrentUserController = async (req, res) => {
   try {
     const user = await getUserByIdService(req.user._id);
@@ -71,6 +61,7 @@ const getCurrentUserController = async (req, res) => {
       message: "User fetched successfully",
       data: user,
     });
+
   } catch (error) {
     return res.status(httpStatus.internalServerError).json({
       success: false,
@@ -79,14 +70,13 @@ const getCurrentUserController = async (req, res) => {
   }
 };
 
-//  Update User Profile Controller
-
+// Update Profile
 const updateUserProfileController = async (req, res) => {
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.user._id,
       { profile: req.body },
-      { new: true },
+      { new: true }
     );
 
     if (!updatedUser) {
@@ -101,6 +91,7 @@ const updateUserProfileController = async (req, res) => {
       message: "Profile updated successfully",
       data: updatedUser,
     });
+
   } catch (error) {
     return res.status(httpStatus.internalServerError).json({
       success: false,

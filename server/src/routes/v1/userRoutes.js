@@ -5,7 +5,6 @@ const userController = require("../../controllers/userController");
 const authMiddleware = require("../../middleware/authMiddleware");
 const asyncHandler = require("../../helper/asyncHandler");
 const validate = require("../../middleware/validate");
-
 const upload = require("../../config/multer"); 
 
 const {
