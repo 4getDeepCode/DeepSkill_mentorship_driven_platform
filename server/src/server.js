@@ -12,7 +12,7 @@ const config = require("./config");
 
 app.use(
   cors({
-    origin: "deep-skill-mentorship-driven-platfo-ashy.vercel.app",
+    origin: "https://deep-skill-mentorship-driven-platfo-ashy.vercel.app",
     credentials: true,
   }),
 );
